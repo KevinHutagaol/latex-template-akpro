@@ -1,0 +1,6 @@
+\contentsline {section}{\numberline {1}Pelanggaran dan Sanksi}{ii}{section.1}%
+\contentsline {section}{\numberline {2}Disclaimer}{ii}{section.2}%
+\contentsline {section}{\numberline {3}Kata Pengantar}{iii}{section.3}%
+\contentsline {section}{\numberline {4}TEST1}{1}{section.4}%
+\contentsline {section}{\numberline {5}TEST 2}{2}{section.5}%
+\contentsfinish 

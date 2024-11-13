@@ -1,0 +1,22 @@
+% macros.sty
+\ProvidesPackage{macros}[2024/04/27 Custom Macros Package]
+
+% -------------------- Custom Commands --------------------
+\newcommand{\ddx}{\sfrac{\mathrm{d}}{\mathrm{d}x}}
+
+% -------------------- Arrow Command --------------------
+\newcommand{\arrowIn}{
+    \tikz \draw[-{Stealth[fill=white]}] (-1pt,0) -- (1pt,0) ;
+}
+
+% --------------------- Menyimpan nama matkul -----------
+\newcommand{\namamatkul}{    
+    \ifdefined\@title
+        \textcolor{red}{NAMA MATKUL}
+    \else
+        \@title
+    \fi
+}
+
+\endinput
+

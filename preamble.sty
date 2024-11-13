@@ -1,0 +1,95 @@
+% preamble.sty
+\ProvidesPackage{preamble}[2024/04/27 Custom Preamble Package]
+
+% -------------------- Geometry and Page Layout --------------------
+\RequirePackage[a4paper,top=2.54cm, bottom=4.35cm, left=2.54cm, right=2.54cm]{geometry}  % Margin
+\RequirePackage{afterpage}
+
+% -------------------- Encoding and Fonts --------------------
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{lmodern}
+\RequirePackage{times}
+\RequirePackage{silence}
+\WarningFilter{latexfont}{Font shape}  % REMOVES STUPID ERROR MESSAGE 
+% \let\Bbbk\relax % Fix error from amsmath and newtxmath having both \Bbbk 
+% \RequirePackage{newtxmath} % Math font STUPID \Bbbk ERROR KEEPS BREAKING IT 
+% \RequirePackage{newtxtext}
+% \renewcommand{\Bbbk}{\mathbb{K}}
+% \renewcommand{\familydefault}{\sfdefault} 
+
+
+% -------------------- Mathematics --------------------
+\RequirePackage{amsmath, amssymb, mathtools, derivative}
+\RequirePackage{esint}  % For loop integrals
+\RequirePackage{steinmetz} % Phasor notation
+\RequirePackage{pict2e}
+\RequirePackage{xfrac} % Better fractions in inline
+
+% -------------------- Graphics and Tables --------------------
+\RequirePackage{graphicx}
+\RequirePackage{tikz, pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{
+    arrows.meta,
+    decorations.pathmorphing,
+    decorations.markings,
+    patterns,
+    calc,
+    matrix,
+    positioning,
+    intersections
+}
+\RequirePackage{pgffor}  % For loops in TikZ
+\RequirePackage{booktabs} % Enhanced tables
+\RequirePackage{caption}
+% -------------------- TikZ Settings --------------------
+\usepgfplotslibrary{fillbetween, colormaps}
+\usetikzlibrary{decorations.markings}
+
+% -------------------- Layout and Formatting --------------------
+\setlength{\parindent}{30pt} 
+\RequirePackage{setspace}  
+\setstretch{1.5} % Sets the stretching of paragraphs 
+\RequirePackage[status=draft,layout=margin]{fixme} % For annotations 
+\RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
+\RequirePackage{titletoc}
+\RequirePackage{enumitem}
+\RequirePackage{multicol}
+\RequirePackage{tabularx}
+\RequirePackage{ulem} % For better underlining
+\RequirePackage{fancyvrb, fvextra} % Better verbatim environments
+
+
+
+% -------------------- Color and Hyperlinks --------------------
+\RequirePackage{xcolor}
+\RequirePackage{hyperref}
+\RequirePackage{nameref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blue,
+    linktocpage=true
+}
+
+
+% -------------------- Page Style --------------------
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\cfoot{\raisebox{0cm}{\includegraphics[scale=1]{images/LOGO AKPRO.jpg}}} % Footer logo
+
+% -------------------- Section Titles with titlesec --------------------
+\titleformat{\section}[hang]{\normalsize\bfseries\filcenter}{}{0pt}{}
+\titlespacing{\section}{0pt}{12pt}{12pt}
+
+% -------------------- Table of Contents Style with titletoc --------------------
+\titlecontents{section}[0pt]{}{}{}{\titlerule*[0.1cm]{.}\contentspage}[]
+\renewcommand*\contentsname{\centering\textbf{Daftar Isi}}     % Title of TOC section 
+
+\endinput

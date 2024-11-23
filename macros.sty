@@ -1,22 +1,109 @@
 % macros.sty
 \ProvidesPackage{macros}[2024/04/27 Custom Macros Package]
 
-% -------------------- Custom Commands --------------------
-\newcommand{\ddx}{\sfrac{\mathrm{d}}{\mathrm{d}x}}
+%---------------------------COLORS---------------------------
+
 
 % -------------------- Arrow Command --------------------
-\newcommand{\arrowIn}{
+\NewDocumentCommand{\arrowIn}{}{
     \tikz \draw[-{Stealth[fill=white]}] (-1pt,0) -- (1pt,0) ;
 }
 
-% --------------------- Menyimpan nama matkul -----------
-\newcommand{\namamatkul}{    
-    \ifdefined\@title
-        \textcolor{red}{NAMA MATKUL}
-    \else
-        \@title
-    \fi
+% -------------------------------------------------------
+
+\NewDocumentCommand{\placeholder}{O{PLACEHOLDER}}{%
+    \textcolor{red}{\MakeUppercase{#1}}%
+    \ClassWarning{placeholder}{The placeholder '#1' was not replaced.}%
 }
 
+% -------------------------------------------------------
+% \NewDocumentCommand{\highlight}{m}{?}
+
+% -------------------------------------------------------
+
+\newenvironment{datasoal} {%
+    \begin{flushleft}
+        \noindent
+        \begin{tabular}{@{}ll}
+} { 
+        \end{tabular}
+    \end{flushleft}
+}
+
+% -------------------------------------------------------
+\newcounter{nomorSoal}
+\@addtoreset{nomorSoal}{section}
+
+\newenvironment{soal} {%
+    \stepcounter{nomorSoal}
+
+    \addcontentsline{toc}{subsection}{Nomor \arabic{nomorSoal}}
+    
+    \ifnum\value{nomorSoal}=1
+        \begin{enumerate}[left=0pt, label=\textbf{\arabic*.}, nosep, series=soal]
+            \item 
+    \else
+        \begin{enumerate}[resume*=soal]
+            \item 
+    \fi
+} { 
+    \end{enumerate}
+}
+
+% -------------------------------------------------------
+
+
+\newenvironment{jawaban} {%
+    \begin{itemize}[left=0pt, nosep]
+    \item[]{\tcbox[
+        on line,
+        arc=0pt,
+        outer arc=0pt,
+        colback=gray!10!white,
+        colframe=gray!80,
+        boxsep=2pt,
+        left=1pt,
+        right=1pt,
+        top=2pt,
+        bottom=2pt,
+        boxrule=0pt,
+        bottomrule=1pt,
+        toprule=1pt
+    ] 
+        {Jawaban} } \ignorespaces 
+} { 
+    \unskip\end{itemize}
+    \vspace{\baselineskip}
+}
+
+% -------------------------------------------------------
+\tcbsetforeverylayer{
+    enhanced, 
+    breakable, 
+    highlight math style={
+        enhanced,
+        colframe=gray!80,
+        colback=gray!10,
+        boxsep=0pt
+    }
+}
+
+\NewTcbTheorem[]{teori}{Dasar Teori}{
+    nameref/.style={}, 
+    colback=white ,
+    colframe=black ,
+    colbacktitle=white ,
+    coltitle=black,
+        drop fuzzy shadow=gray,
+    }
+        {teori}
+
+
+
+
+
+
 \endinput
+
+
 

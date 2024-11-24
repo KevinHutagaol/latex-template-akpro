@@ -17,7 +17,35 @@
 }
 
 % -------------------------------------------------------
-% \NewDocumentCommand{\highlight}{m}{?}
+\newif\ifstartedinmathmode
+
+\NewDocumentCommand{\highlight}{m}{%
+    \relax
+        \ifmmode
+            \startedinmathmodetrue
+        \else
+            \startedinmathmodefalse
+        \fi
+    \tikz[baseline=(m.base)]{
+        \node[
+            draw=gray!80, 
+            fill=gray!10, 
+            rounded corners, 
+            inner sep=0.5em, 
+            outer sep=0pt, 
+            ultra thick,
+            align=center,
+            anchor=base
+        ] (m) 
+        {
+            \ifstartedinmathmode 
+                $\displaystyle #1$ 
+            \else 
+                #1 
+            \fi  
+        };
+    }%
+}
 
 % -------------------------------------------------------
 
@@ -104,6 +132,4 @@
 
 
 \endinput
-
-
 
